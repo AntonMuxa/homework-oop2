@@ -13,27 +13,19 @@ move и вызывает его собственный метод move кото�
         $this->name = $name;
     }
 
-    function take_transport($transport) {
-        if(!is_object($transport)) return false;
-        $transport->byname = $this->name;
-        $this->transport = $transport;
+    function take_transport(Mototechnics $mototechnics) { /*Тут полиморфизм*/
+
+        $mototechnics->byname = $this->name;
+        $this->transport = $mototechnics;
         return $this;
     }
 
     function move(){
-        if(method_exists($this->transport, 'move')
-            && is_subclass_of($this->transport, "Mototechnics"))
-        {
-            $this->transport->move();
-        } else echo "No transport to use".PHP_EOL;
+        $this->transport->move();
     }
 
     function stop(){
-        if(method_exists($this->transport, 'stop')
-            && is_subclass_of($this->transport, "Mototechnics"))
-        {
-            $this->transport->stop();
-        } else echo "No transport in use".PHP_EOL;
+        $this->transport->stop();
     }
 
 }
