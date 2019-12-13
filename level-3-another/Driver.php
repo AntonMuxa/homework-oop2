@@ -13,13 +13,6 @@ move и вызывает его собственный метод move кото�
         $this->name = $name;
     }
 
-    function take_transport(Mototechnics $mototechnics) { /*Тут полиморфизм*/
-
-        $mototechnics->byname = $this->name;
-        $this->transport = $mototechnics;
-        return $this;
-    }
-
     function move(Mototechnics $mototechnics){
         $mototechnics->byname = $this->name;
 		$mototechnics->move();
